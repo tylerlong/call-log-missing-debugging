@@ -6,6 +6,30 @@ const rc = new RingCentral({
 });
 
 (async () => {
-  const extInfo = await rc.restapi().account().extension().get();
-  console.log(extInfo);
+  const ext = rc
+    .restapi()
+    .account()
+    .extension(process.env.RINGCENTRAL_EXTENSION_ID!);
+
+  // const extInfo = await ext.get();
+  // console.log(extInfo);
+
+  // const phoneNumber = await ext.phoneNumber().get();
+  // console.log(phoneNumber);
+
+  // const callLogs = await ext.callLog().list();
+  // console.log(JSON.stringify(callLogs, null, 2));
+
+  const callLogs = await ext.callLogSync().get({
+    syncType: ['FSync'],
+    recordCount: 10,
+  });
+  // console.log(JSON.stringify(callLogs, null, 2));
+
+  const callLogs2 = await ext.callLogSync().get({
+    syncType: ['ISync'],
+    recordCount: 10,
+    syncToken: callLogs.syncInfo!.syncToken,
+  });
+  console.log(JSON.stringify(callLogs2, null, 2));
 })();
