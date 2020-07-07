@@ -1,5 +1,6 @@
 {
     "standard.enable": false,
+    "deno.enable": false,
     "filewatcher.commands": [
       {
         "match": "\\.ts",

@@ -1,10 +1,14 @@
 {
   "license": "MIT",
   "scripts": {
-    "test": "ts-node src/index.ts"
+    "test": "ts-node -r dotenv-override-true/config src/index.ts"
+  },
+  "dependencies": {
+    "ringcentral-extensible": "^0.8.6"
   },
   "devDependencies": {
     "@types/node": "^14.0.19",
+    "dotenv-override-true": "^6.2.0",
     "gts": "^2.0.2",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.6",
